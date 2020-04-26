@@ -7,6 +7,7 @@ package com.mycompany.jedalnicek;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -17,12 +18,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author John
  */
 public class MainGUI extends javax.swing.JFrame {
-
+    private DBconnect dbconect ;
     /**
      * Creates new form MainGUI
      */
-    public MainGUI() {
+    public MainGUI() throws SQLException  {
         initComponents();
+        dbconect = new DBconnect();
+        zobrazRecepty(dbconect);
+        
        
     }
 
@@ -42,6 +46,7 @@ public class MainGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Main_tyzdenNutrienty = new javax.swing.JTable();
         jButton_Main_pridajRecept = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -66,38 +71,45 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenZoznam.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTable_Main_tyzdenZoznam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"23:00", null, null, null, null, null, null, null},
-                {"22:00", null, null, null, null, null, null, null},
-                {"21:00", null, null, null, null, null, null, null},
-                {"20:00", null, null, null, null, null, null, null},
-                {"19:00", null, null, null, null, null, null, null},
-                {"18:00", null, null, null, null, null, null, null},
-                {"17:00", null, null, null, null, null, null, null},
-                {"16:00", null, null, null, null, null, null, null},
-                {"15:00", null, null, null, null, null, null, null},
-                {"14:00", null, null, null, null, null, null, null},
-                {"13:00", null, null, null, null, null, null, null},
-                {"12:00", null, null, null, null, null, null, null},
-                {"11:00", null, null, null, null, null, null, null},
-                {"10:00", null, null, null, null, null, null, null},
-                {"09:00", null, null, null, null, null, null, null},
-                {"08:00", null, null, null, null, null, null, null},
-                {"07:00", null, null, null, null, null, null, null},
-                {"06:00", null, null, null, null, null, null, null},
-                {"05:00", null, null, null, null, null, null, null},
-                {"04:00", null, null, null, null, null, null, null},
-                {"03:00", null, null, null, null, null, null, null},
-                {"02:00", null, null, null, null, null, null, null},
+                {"00:00", null, null, null, null, null, null, null},
                 {"01:00", null, null, null, null, null, null, null},
-                {"00:00", null, null, null, null, null, null, null}
+                {"02:00", null, null, null, null, null, null, null},
+                {"03:00", null, null, null, null, null, null, null},
+                {"04:00", null, null, null, null, null, null, null},
+                {"05:00", null, null, null, null, null, null, null},
+                {"06:00", null, null, null, null, null, null, null},
+                {"07:00", null, null, null, null, null, null, null},
+                {"08:00", null, null, null, null, null, null, null},
+                {"09:00", null, null, null, null, null, null, null},
+                {"10:00", null, null, null, null, null, null, null},
+                {"11:00", null, null, null, null, null, null, null},
+                {"12:00", null, null, null, null, null, null, null},
+                {"13:00", null, null, null, null, null, null, null},
+                {"14:00", null, null, null, null, null, null, null},
+                {"15:00", null, null, null, null, null, null, null},
+                {"16:00", null, null, null, null, null, null, null},
+                {"17:00", null, null, null, null, null, null, null},
+                {"18:00", null, null, null, null, null, null, null},
+                {"19:00", null, null, null, null, null, null, null},
+                {"20:00", null, null, null, null, null, null, null},
+                {"21:00", null, null, null, null, null, null, null},
+                {"22:00", null, null, null, null, null, null, null},
+                {"23:00", null, null, null, null, null, null, null}
             },
             new String [] {
                 "cas", "Pondelok", "Utorok", "Streda", "Stvrtok", "Piatok", "Sobota", "Nedela"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -161,6 +173,19 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(138, 157, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel_MainLayout = new javax.swing.GroupLayout(jPanel_Main);
         jPanel_Main.setLayout(jPanel_MainLayout);
         jPanel_MainLayout.setHorizontalGroup(
@@ -173,17 +198,19 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel_MainLayout.setVerticalGroup(
             jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_MainLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -194,9 +221,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel_Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel_Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -205,7 +230,9 @@ public class MainGUI extends javax.swing.JFrame {
     private void jButton_Main_pridajReceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Main_pridajReceptActionPerformed
       
         
-        
+        int riadok = jTable_Main_tyzdenZoznam.getSelectedRow();
+        int stlpec = jTable_Main_tyzdenZoznam.getSelectedColumn();
+        System.out.println(riadok+" "+stlpec);
         
         
         
@@ -246,7 +273,11 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                try {
+                    new MainGUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -254,10 +285,26 @@ public class MainGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Main_pridajRecept;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Main;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_Main_tyzdenNutrienty;
     private javax.swing.JTable jTable_Main_tyzdenZoznam;
     // End of variables declaration//GEN-END:variables
+
+    private void zobrazRecepty(DBconnect dbconect) throws SQLException {
+       
+        for (int hodina = 0; hodina < 24; hodina++) {
+            for (int den = 1; den < 8; den++) {
+                ReceptDenHodina rdh = dbconect.getReceptDenHodina(den,hodina);
+                if(rdh!=null){
+                    String nazovReceptu = rdh.getNazov();
+                    jTable_Main_tyzdenZoznam.setValueAt(nazovReceptu, hodina, den);
+                    
+                }
+            }
+        }
+        
+    }
 }

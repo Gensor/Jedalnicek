@@ -46,13 +46,13 @@ public class DBconnect {
     
     public void vlozRecept(String nazovReceptu) throws SQLException{
         String insert = "INSERT INTO mydb.recepty (Nazov) VALUES (?)";
-        preparedStatement =  connection.prepareStatement(insert);
+        preparedStatement = connection.prepareStatement(insert);
         preparedStatement.setString(1, nazovReceptu);
         preparedStatement.executeUpdate();
     }
 
     public ReceptDenHodina getReceptDenHodina(int den,int hodina) throws SQLException {
-        String select ="select d.idDen as den,r.Nazov as recept, hodina from den_has_recepty dr\n" 
+        String select = "select d.idDen as den,r.Nazov as recept, hodina from den_has_recepty dr\n" 
             +"join den d on dr.Den_idDen=d.idDen\n" 
             +"join recepty r on dr.Recepty_idRecepty=r.idRecepty\n" 
             +"where dr.Den_idDen = ? and dr.hodina = ?";
@@ -72,4 +72,66 @@ public class DBconnect {
         
         return null;
     }
+
+    public int getBielkovinyNaDen(int den) throws SQLException {
+        String select = "select SUM(s.bielkoviny*(sr.hmotnostSuroviny*0.01)) as bielkoviny from den_has_recepty dr\n" 
+            +"join recepty r on r.idRecepty=dr.Recepty_idRecepty\n" 
+            +"join suroviny_na_recept sr on sr.Recepty_idRecepty=r.idRecepty\n" 
+            +"join suroviny s on s.idSuroviny=sr.Suroviny_idSuroviny\n" 
+            +"where Den_idDen = ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setInt(1, den);
+        ResultSet resultset = preparedStatement.executeQuery();
+        
+        while(resultset.next()){
+            int bielkoviny = resultset.getInt("bielkoviny");
+            return bielkoviny;
+            
+           
+        }
+        
+        return 0;
+    }
+    
+    public int getSacharidyNaDen(int den) throws SQLException {
+        String select = "select SUM(s.sacharidy*(sr.hmotnostSuroviny*0.01)) as sacharidy from den_has_recepty dr\n" 
+            +"join recepty r on r.idRecepty=dr.Recepty_idRecepty\n" 
+            +"join suroviny_na_recept sr on sr.Recepty_idRecepty=r.idRecepty\n" 
+            +"join suroviny s on s.idSuroviny=sr.Suroviny_idSuroviny\n" 
+            +"where Den_idDen = ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setInt(1, den);
+        ResultSet resultset = preparedStatement.executeQuery();
+        
+        while(resultset.next()){
+            int sacharidy = resultset.getInt("sacharidy");
+            return sacharidy;
+            
+           
+        }
+        
+        return 0;
+    }
+    
+    public int getTukyNaDen(int den) throws SQLException {
+        String select = "select SUM(s.tuky*(sr.hmotnostSuroviny*0.01)) as tuky from den_has_recepty dr\n" 
+            +"join recepty r on r.idRecepty=dr.Recepty_idRecepty\n" 
+            +"join suroviny_na_recept sr on sr.Recepty_idRecepty=r.idRecepty\n" 
+            +"join suroviny s on s.idSuroviny=sr.Suroviny_idSuroviny\n" 
+            +"where Den_idDen = ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setInt(1, den);
+        ResultSet resultset = preparedStatement.executeQuery();
+        
+        while(resultset.next()){
+            int tuky = resultset.getInt("tuky");
+            return tuky;
+            
+           
+        }
+        
+        return 0;
+    }
+    
+    
 }

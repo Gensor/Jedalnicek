@@ -18,14 +18,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author John
  */
 public class MainGUI extends javax.swing.JFrame {
-    private DBconnect dbconect ;
+    private DBconnect databaza ;
     /**
      * Creates new form MainGUI
      */
     public MainGUI() throws SQLException  {
         initComponents();
-        dbconect = new DBconnect();
-        zobrazRecepty(dbconect);
+        databaza = new DBconnect();
+        zobrazRecepty(databaza);
+        zobrazMakronutriePreTyzden(databaza);
         
        
     }
@@ -127,6 +128,13 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenZoznam.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable_Main_tyzdenZoznam.getColumnModel().getColumnCount() > 0) {
             jTable_Main_tyzdenZoznam.getColumnModel().getColumn(0).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(1).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(2).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(3).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(4).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(5).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(6).setResizable(false);
+            jTable_Main_tyzdenZoznam.getColumnModel().getColumn(7).setResizable(false);
         }
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -145,16 +153,9 @@ public class MainGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jTable_Main_tyzdenNutrienty.setColumnSelectionAllowed(true);
@@ -165,6 +166,16 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenNutrienty.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable_Main_tyzdenNutrienty);
         jTable_Main_tyzdenNutrienty.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable_Main_tyzdenNutrienty.getColumnModel().getColumnCount() > 0) {
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(0).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(1).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(2).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(3).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(4).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(5).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(6).setResizable(false);
+            jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jButton_Main_pridajRecept.setText("+");
         jButton_Main_pridajRecept.addActionListener(new java.awt.event.ActionListener() {
@@ -307,4 +318,22 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
     }
+    
+    private void zobrazMakronutriePreTyzden(DBconnect databaza) throws SQLException {
+       
+        for (int den = 1; den < 8; den++) {
+             int bielkoviny = databaza.getBielkovinyNaDen(den);
+             int sacharidy = databaza.getSacharidyNaDen(den);
+             int tuky = databaza.getTukyNaDen(den);
+             int kcal =(bielkoviny+sacharidy)*4+tuky*9;
+             jTable_Main_tyzdenNutrienty.setValueAt(bielkoviny, 0, den);
+             jTable_Main_tyzdenNutrienty.setValueAt(sacharidy, 1, den);
+             jTable_Main_tyzdenNutrienty.setValueAt(tuky, 2, den);
+             jTable_Main_tyzdenNutrienty.setValueAt(kcal, 3, den);
+             
+        }
+        
+    }
+    
+    
 }

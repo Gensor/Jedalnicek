@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -52,7 +54,7 @@ public class DBconnect {
     }
 
     public ReceptDenHodina getReceptDenHodina(int den,int hodina) throws SQLException {
-        String select = "select d.idDen as den,r.Nazov as recept, hodina from den_has_recepty dr\n" 
+        String select = "select d.idDen as den,r.nazov as recept, hodina from den_has_recepty dr\n" 
             +"join den d on dr.Den_idDen=d.idDen\n" 
             +"join recepty r on dr.Recepty_idRecepty=r.idRecepty\n" 
             +"where dr.Den_idDen = ? and dr.hodina = ?";
@@ -124,7 +126,7 @@ public class DBconnect {
         ResultSet resultset = preparedStatement.executeQuery();
         
         while(resultset.next()){
-            int tuky = resultset.getInt("tuky");
+            int tuky = resultset.getInt("tuky");                                // TODO netreba asi ten while ze
             return tuky;
             
            
@@ -140,6 +142,101 @@ public class DBconnect {
         preparedStatement.setInt(2, hodina);
         preparedStatement.executeUpdate();
     }
+
+    public ArrayList<String> getRecepty() throws SQLException {
+        String select = "select nazov from recepty";
+        preparedStatement = connection.prepareStatement(select);
+        ResultSet rs = preparedStatement.executeQuery();
+        ArrayList<String> recepty = new ArrayList<String>();
+        while(rs.next()){
+            String nazov = rs.getString("nazov");
+            recepty.add(nazov);
+            
+            
+           
+        }
+        return recepty;
+    }
+
+    public void vlozReceptDenHasRecepty(String recept, int den, int hodina) throws SQLException {
+       String insert = "INSERT INTO mydb.den_has_recepty (Den_idDen, Recepty_idRecepty, hodina) "
+                       + "VALUES (?, (select idRecepty from recepty where recepty.nazov like ?), ?)";
+        preparedStatement = connection.prepareStatement(insert);
+        preparedStatement.setInt(1, den);
+        preparedStatement.setString(2, recept);
+        preparedStatement.setInt(3, hodina);
+        preparedStatement.executeUpdate();
+    }
+
+    public ArrayList<String> getSuroviny() throws SQLException {
+        ArrayList<String> suroviny = new ArrayList<>();
+        
+        String select = "select nazov from suroviny";
+        preparedStatement = connection.prepareStatement(select);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()){
+            String nazovSuroviny = resultSet.getString("nazov");
+            suroviny.add(nazovSuroviny);
+        }
+        
+        
+        return suroviny;
+    }
     
+   
+
+    public void vlozSurovinyNaRecept(Recept recept) throws SQLException {
+        int idReceptu = getIdReceptu(recept.getNazovReceptu());
+        HashMap<String,Integer> list = recept.getSurovinyMap();
+        
+        for (String nazovSuroviny : list.keySet()) {
+            int idSuroviny = getIdSuroviny(nazovSuroviny);
+            int hmotnost = list.get(nazovSuroviny);
+            vlozJednuSurovinuNaRecept(idReceptu,idSuroviny,hmotnost);
+        }
+        
+       
+    }
     
+    public int getIdReceptu(String nazov) throws SQLException {
+        String select = "select idRecepty from recepty where nazov like ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, nazov);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        int id = -1;
+        
+        while(rs.next()){
+           id=rs.getInt("idRecepty");
+           return id;
+        }
+     return id;
+    }
+
+    public int getIdSuroviny(String nazovSuroviny) throws SQLException {
+        String select = "select idSuroviny from suroviny where nazov like ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, nazovSuroviny);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        int id = -1;
+        
+        while(rs.next()){
+           id=rs.getInt("idSuroviny");
+           return id;
+        }
+     return id;
+    }
+
+    private void vlozJednuSurovinuNaRecept(int idReceptu, int idSuroviny, int hmotnost) throws SQLException {
+        String insert = "INSERT INTO mydb.suroviny_na_recept "
+                + "(Recepty_idRecepty, Suroviny_idSuroviny, hmotnostSuroviny)"
+                + " VALUES (?, ?, ?)";
+        preparedStatement = connection.prepareStatement(insert);
+        preparedStatement.setInt(1, idReceptu);
+        preparedStatement.setInt(2, idSuroviny);
+        preparedStatement.setInt(3, hmotnost);
+        preparedStatement.executeUpdate();
+    }
 }

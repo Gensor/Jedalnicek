@@ -88,6 +88,15 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel_pridajRecept_ERROR_hmotnost = new javax.swing.JLabel();
         jLabel_pridajRecept_ERROR_nazov = new javax.swing.JLabel();
+        jPanel_pridajSurovinu = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jedalnicek");
@@ -468,9 +477,9 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_pridajRecept_OKLayout.setHorizontalGroup(
             jPanel_pridajRecept_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajRecept_OKLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(112, 112, 112)
                 .addComponent(jLabel8)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel_pridajRecept_OKLayout.setVerticalGroup(
             jPanel_pridajRecept_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,68 +574,141 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel_pridajRecept_ERROR_nazov.setForeground(new java.awt.Color(255, 0, 0));
         jLabel_pridajRecept_ERROR_nazov.setText("*Zadaj nazov");
 
+        jLabel11.setText("nazov:");
+
+        jTextField1.setText("jTextField1");
+
+        jLabel12.setText("bielkoviny:");
+
+        jTextField2.setText("jTextField2");
+
+        jLabel13.setText("sacharidy:");
+
+        jLabel14.setText("tuky:");
+
+        jTextField3.setText("jTextField3");
+
+        jTextField4.setText("jTextField4");
+
+        javax.swing.GroupLayout jPanel_pridajSurovinuLayout = new javax.swing.GroupLayout(jPanel_pridajSurovinu);
+        jPanel_pridajSurovinu.setLayout(jPanel_pridajSurovinuLayout);
+        jPanel_pridajSurovinuLayout.setHorizontalGroup(
+            jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(jTextField2)))
+                    .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(jTextField4))))
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+        jPanel_pridajSurovinuLayout.setVerticalGroup(
+            jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel_pridajReceptLayout = new javax.swing.GroupLayout(jPanel_pridajRecept);
         jPanel_pridajRecept.setLayout(jPanel_pridajReceptLayout);
         jPanel_pridajReceptLayout.setHorizontalGroup(
             jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(35, 35, 35)
-                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGap(203, 203, 203)
                         .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_pridajRecept_ERROR_nazov)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(653, Short.MAX_VALUE))
+                            .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                    .addComponent(jTextField_hmotnostSuroviny))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)))
+                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))))
         );
         jPanel_pridajReceptLayout.setVerticalGroup(
             jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_pridajRecept_ERROR_nazov)
-                        .addGap(77, 77, 77)
-                        .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel6)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel_pridajRecept_ERROR_hmotnost)))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_pridajRecept_ERROR_hmotnost)
-                .addGap(22, 22, 22)
-                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(103, 103, 103))
         );
 
         jLayeredPane1.setLayer(jPanel_zoznamTyzden, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -920,6 +1002,10 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Main_zmazRecept;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -942,6 +1028,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_pridajRecept_OK;
     private javax.swing.JPanel jPanel_pridajRecept_odober;
     private javax.swing.JPanel jPanel_pridajRecept_pridaj;
+    private javax.swing.JPanel jPanel_pridajSurovinu;
     private javax.swing.JPanel jPanel_zoznamReceptov;
     private javax.swing.JPanel jPanel_zoznamReceptov_OK;
     private javax.swing.JPanel jPanel_zoznamReceptov_novyRecept;
@@ -954,6 +1041,10 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable_Main_tyzdenNutrienty;
     private javax.swing.JTable jTable_Main_tyzdenZoznam;
     private javax.swing.JTable jTable_pridajRecept_zvoleneSuroviny;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField_hmotnostSuroviny;
     private javax.swing.JTextField jTextField_pridajRecept_nazovReceptu;
     // End of variables declaration//GEN-END:variables

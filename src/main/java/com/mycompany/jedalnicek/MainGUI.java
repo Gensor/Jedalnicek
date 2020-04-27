@@ -40,7 +40,6 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
         jPanel_Main = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Main_tyzdenZoznam = new javax.swing.JTable();
@@ -48,21 +47,12 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenNutrienty = new javax.swing.JTable();
         jButton_Main_pridajRecept = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jButton_Main_zmazRecept = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jedalnicek");
         setBackground(new java.awt.Color(255, 255, 255));
+        setName("frame_main"); // NOI18N
 
         jPanel_Main.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -197,31 +187,43 @@ public class MainGUI extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
+        jButton_Main_zmazRecept.setText("X");
+        jButton_Main_zmazRecept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Main_zmazReceptActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_MainLayout = new javax.swing.GroupLayout(jPanel_Main);
         jPanel_Main.setLayout(jPanel_MainLayout);
         jPanel_MainLayout.setHorizontalGroup(
             jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_MainLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(35, 35, 35)
-                .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_MainLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1138, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(jButton_Main_zmazRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
         jPanel_MainLayout.setVerticalGroup(
             jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_MainLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addGroup(jPanel_MainLayout.createSequentialGroup()
+                        .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Main_zmazRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -241,9 +243,14 @@ public class MainGUI extends javax.swing.JFrame {
     private void jButton_Main_pridajReceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Main_pridajReceptActionPerformed
       
         
-        int riadok = jTable_Main_tyzdenZoznam.getSelectedRow();
-        int stlpec = jTable_Main_tyzdenZoznam.getSelectedColumn();
-        System.out.println(riadok+" "+stlpec);
+        int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
+        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
+        
+        if( (den>0) && (hodina>=0) ){
+            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)==null){
+                pridajRecept(hodina,den);
+            }
+        }
         
         
         
@@ -253,6 +260,23 @@ public class MainGUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton_Main_pridajReceptActionPerformed
+
+    private void jButton_Main_zmazReceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Main_zmazReceptActionPerformed
+        int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
+        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
+        
+        if( (den>0) && (hodina>=0) ){
+            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)!=null){
+                jTable_Main_tyzdenZoznam.setValueAt(null, hodina, den);
+                try {
+                    databaza.vymazReceptZDenHasRecept(hodina,den);
+                    zobrazRecepty(databaza);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton_Main_zmazReceptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +319,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Main_pridajRecept;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JButton jButton_Main_zmazRecept;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Main;
     private javax.swing.JScrollPane jScrollPane1;
@@ -333,6 +357,10 @@ public class MainGUI extends javax.swing.JFrame {
              
         }
         
+    }
+
+    private void pridajRecept(int hodina, int den) {
+        jTable_Main_tyzdenZoznam.setValueAt("som pridal", hodina, den);
     }
     
     

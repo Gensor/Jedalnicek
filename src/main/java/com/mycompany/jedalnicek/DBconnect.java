@@ -132,6 +132,14 @@ public class DBconnect {
         
         return 0;
     }
+
+    public void vymazReceptZDenHasRecept(int hodina, int den) throws SQLException {
+        String delete = "DELETE FROM mydb.den_has_recepty WHERE Den_idDen = ? AND den_has_recepty.hodina = ?";
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setInt(1, den);
+        preparedStatement.setInt(2, hodina);
+        preparedStatement.executeUpdate();
+    }
     
     
 }

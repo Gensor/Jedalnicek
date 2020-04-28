@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.jedalnicek;
 
 
@@ -14,10 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author John
- */
+
 public class DBconnect {
     private String host = "localhost";
     private String port = "3306";
@@ -40,7 +32,6 @@ public class DBconnect {
     public Connection getConnection() throws ClassNotFoundException, SQLException{
         String connectionString = "jdbc:mysql://"+host+":"+port+"/"+database;
         Class.forName("com.mysql.jdbc.Driver");
-        
         connection = DriverManager.getConnection(connectionString,user,pass);
         
         return connection;
@@ -53,8 +44,8 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    public ReceptDenHodina getReceptDenHodina(int den,int hodina) throws SQLException {
-        String select = "select d.idDen as den,r.nazov as recept, hodina from den_has_recepty dr\n" 
+    public String getReceptDenHodina(int den,int hodina) throws SQLException {
+        String select = "select r.nazov as recept from den_has_recepty dr\n" 
             +"join den d on dr.Den_idDen=d.idDen\n" 
             +"join recepty r on dr.Recepty_idRecepty=r.idRecepty\n" 
             +"where dr.Den_idDen = ? and dr.hodina = ?";
@@ -65,11 +56,8 @@ public class DBconnect {
         ResultSet resultset = preparedStatement.executeQuery();
         
         while(resultset.next()){
-            int den_rs = resultset.getInt("den");
             String recept_rs = resultset.getString("recept");
-            int hodina_rs = resultset.getInt("hodina");
-            
-            return new ReceptDenHodina(recept_rs, den, hodina);
+            return recept_rs;
         }
         
         return null;
@@ -88,8 +76,6 @@ public class DBconnect {
         while(resultset.next()){
             int bielkoviny = resultset.getInt("bielkoviny");
             return bielkoviny;
-            
-           
         }
         
         return 0;
@@ -108,8 +94,6 @@ public class DBconnect {
         while(resultset.next()){
             int sacharidy = resultset.getInt("sacharidy");
             return sacharidy;
-            
-           
         }
         
         return 0;
@@ -126,10 +110,8 @@ public class DBconnect {
         ResultSet resultset = preparedStatement.executeQuery();
         
         while(resultset.next()){
-            int tuky = resultset.getInt("tuky");                                // TODO netreba asi ten while ze
+            int tuky = resultset.getInt("tuky");                                
             return tuky;
-            
-           
         }
         
         return 0;
@@ -148,13 +130,12 @@ public class DBconnect {
         preparedStatement = connection.prepareStatement(select);
         ResultSet rs = preparedStatement.executeQuery();
         ArrayList<String> recepty = new ArrayList<String>();
+        
         while(rs.next()){
             String nazov = rs.getString("nazov");
             recepty.add(nazov);
-            
-            
-           
         }
+        
         return recepty;
     }
 
@@ -170,7 +151,6 @@ public class DBconnect {
 
     public ArrayList<String> getSuroviny() throws SQLException {
         ArrayList<String> suroviny = new ArrayList<>();
-        
         String select = "select nazov from suroviny";
         preparedStatement = connection.prepareStatement(select);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -195,8 +175,6 @@ public class DBconnect {
             int hmotnost = list.get(nazovSuroviny);
             vlozJednuSurovinuNaRecept(idReceptu,idSuroviny,hmotnost);
         }
-        
-       
     }
     
     public int getIdReceptu(String nazov) throws SQLException {
@@ -211,7 +189,8 @@ public class DBconnect {
            id=rs.getInt("idRecepty");
            return id;
         }
-     return id;
+        
+        return id;
     }
 
     public int getIdSuroviny(String nazovSuroviny) throws SQLException {
@@ -226,7 +205,8 @@ public class DBconnect {
            id=rs.getInt("idSuroviny");
            return id;
         }
-     return id;
+        
+        return id;
     }
 
     private void vlozJednuSurovinuNaRecept(int idReceptu, int idSuroviny, int hmotnost) throws SQLException {
@@ -241,7 +221,6 @@ public class DBconnect {
     }
 
     public boolean hasRecept(String nazov) throws SQLException {
-        boolean vysledok = false;
         String select = "select COUNT(*) as pocet from recepty where nazov like ?";
         preparedStatement = connection.prepareStatement(select);
         preparedStatement.setString(1, nazov);
@@ -262,7 +241,6 @@ public class DBconnect {
         vymazReceptDenHasRecepty(recept);
         vymazReceptSurovinyNaRecept(recept);
         vymazReceptRecepty(recept);
-        
     }
 
     private void vymazReceptDenHasRecepty(String recept) throws SQLException {
@@ -289,7 +267,7 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    void vlozSurovinu(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
+    public void vlozSurovinu(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
         String insert = "INSERT INTO mydb.suroviny (nazov, bielkoviny, sacharidy, tuky)"
                 + " VALUES (?, ?, ?, ?)"; 
         preparedStatement = connection.prepareStatement(insert);
@@ -300,7 +278,7 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    boolean hasSurovina(String nazov) throws SQLException {
+    public boolean hasSurovina(String nazov) throws SQLException {
         String select = "select count(*) as pocet from suroviny where nazov like ?";
         preparedStatement = connection.prepareStatement(select);
         preparedStatement.setString(1, nazov);
@@ -312,10 +290,9 @@ public class DBconnect {
         }
         
         return false;
-        
     }
 
-    void setSurovina(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
+    public void setSurovina(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
         int idSuroviny = getIdSuroviny(nazov);
         String update="UPDATE mydb.suroviny t "
                 + "SET t.bielkoviny = ?, t.sacharidy = ?, t.tuky = ? "
@@ -328,7 +305,7 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    Surovina getSurovina(String nazov) throws SQLException {
+    public Surovina getSurovina(String nazov) throws SQLException {
         int idSuroviny = getIdSuroviny(nazov);
         String select = "SELECT t.* FROM mydb.suroviny t where idSuroviny = ?";
         preparedStatement = connection.prepareStatement(select);
@@ -345,7 +322,7 @@ public class DBconnect {
         return null;
     }
 
-    void vymazSurovinu(String nazovSuroviny) throws SQLException {
+    public void vymazSurovinu(String nazovSuroviny) throws SQLException {
         if(!hasSurovina(nazovSuroviny)){
             return;
         }
@@ -356,7 +333,7 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    HashMap<String, Integer> getSurovinyReceptu(String nazovReceptu) throws SQLException {
+    public HashMap<String, Integer> getSurovinyReceptu(String nazovReceptu) throws SQLException {
         HashMap<String, Integer> list = new HashMap<>();
         int idReceptu = getIdReceptu(nazovReceptu);
         String select = "SELECT s.nazov as nazov, t.hmotnostSuroviny as hmotnost "
@@ -371,27 +348,23 @@ public class DBconnect {
            String surovina =resultSet.getString("nazov");
            int hmotnost = resultSet.getInt("hmotnost");
            list.put(surovina, hmotnost);
-           
-           
         }
-        return list;
         
+        return list;
     }
 
-    void upravSurovinyNaRecept(Recept recept) throws SQLException {
+    public void upravSurovinyNaRecept(Recept recept) throws SQLException {
         vymazReceptSurovinyNaRecept(recept.getNazovReceptu());
         vlozSurovinyNaRecept(recept);
-        
     }
 
-    void upravRecept(String nazov,String novyNazov) throws SQLException {
+    public void upravRecept(String nazov,String novyNazov) throws SQLException {
         int idReceptu = getIdReceptu(nazov);
         String update = "UPDATE mydb.recepty t SET t.nazov = ? WHERE t.idRecepty = ?";
         preparedStatement = connection.prepareStatement(update);
         preparedStatement.setString(1, novyNazov);
         preparedStatement.setInt(2, idReceptu);
         preparedStatement.executeUpdate();
-        
     }
     
     

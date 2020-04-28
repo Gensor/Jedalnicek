@@ -25,16 +25,7 @@ public class DBconnectTest {
 
     
    
-    @Test
-    public void testGetReceptDenHodina() throws Exception {
-        int den = 1;
-        int hodina = 15;
-        DBconnect instance = new DBconnect();
-        ReceptDenHodina result = instance.getReceptDenHodina(den, hodina);
-        
-        assertNotEquals(null, result);
-    }
-    
+   
     @Test
     public void testGetIdReceptu() throws SQLException{
         DBconnect instance = new DBconnect();

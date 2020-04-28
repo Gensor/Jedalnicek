@@ -288,4 +288,60 @@ public class DBconnect {
         preparedStatement.setInt(1, idRecept);
         preparedStatement.executeUpdate();
     }
+
+    void vlozSurovinu(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
+        String insert = "INSERT INTO mydb.suroviny (nazov, bielkoviny, sacharidy, tuky)"
+                + " VALUES (?, ?, ?, ?)"; 
+        preparedStatement = connection.prepareStatement(insert);
+        preparedStatement.setString(1, nazov);
+        preparedStatement.setFloat(2, bielkoviny);
+        preparedStatement.setFloat(3, sacharidy);
+        preparedStatement.setFloat(4, tuky);
+        preparedStatement.executeUpdate();
+    }
+
+    boolean hasSurovina(String nazov) throws SQLException {
+        String select = "select count(*) as pocet from suroviny where nazov like ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, nazov);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int pocet = 0 ;
+        while(resultSet.next()){
+           pocet=resultSet.getInt("pocet");
+           return pocet>0;
+        }
+        
+        return false;
+        
+    }
+
+    void setSurovina(String nazov, float bielkoviny, float sacharidy, float tuky) throws SQLException {
+        int idSuroviny = getIdSuroviny(nazov);
+        String update="UPDATE mydb.suroviny t "
+                + "SET t.bielkoviny = ?, t.sacharidy = ?, t.tuky = ? "
+                + "WHERE t.idSuroviny = ?";
+        preparedStatement = connection.prepareStatement(update);
+        preparedStatement.setFloat(1, bielkoviny);
+        preparedStatement.setFloat(2, sacharidy);
+        preparedStatement.setFloat(3, tuky);
+        preparedStatement.setInt(4,idSuroviny);
+        preparedStatement.executeUpdate();
+    }
+
+    Surovina getSurovina(String nazov) throws SQLException {
+        int idSuroviny = getIdSuroviny(nazov);
+        String select = "SELECT t.* FROM mydb.suroviny t where idSuroviny = ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setInt(1, idSuroviny);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()){
+           Float bielkoviny=resultSet.getFloat("bielkoviny");
+           Float sacharidy = resultSet.getFloat("sacharidy");
+           Float tuky = resultSet.getFloat("tuky");
+           return new Surovina(nazov, bielkoviny, sacharidy, tuky);
+        }
+        
+        return null;
+    }
 }

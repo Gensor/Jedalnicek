@@ -239,4 +239,53 @@ public class DBconnect {
         preparedStatement.setInt(3, hmotnost);
         preparedStatement.executeUpdate();
     }
+
+    public boolean hasRecept(String nazov) throws SQLException {
+        boolean vysledok = false;
+        String select = "select COUNT(*) as pocet from recepty where nazov like ?";
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, nazov);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int pocet = 0 ;
+        while(resultSet.next()){
+           pocet=resultSet.getInt("pocet");
+           return pocet>0;
+        }
+        
+        return false;
+    }
+
+    public void vymazRecept(String recept) throws SQLException {
+        if(!hasRecept(recept)){
+            return;
+        }
+        vymazReceptDenHasRecepty(recept);
+        vymazReceptSurovinyNaRecept(recept);
+        vymazReceptRecepty(recept);
+        
+    }
+
+    private void vymazReceptDenHasRecepty(String recept) throws SQLException {
+        String delete = "delete from den_has_recepty where Recepty_idRecepty = ?";
+        int idRecept = getIdReceptu(recept);
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setInt(1, idRecept);
+        preparedStatement.executeUpdate();
+    }
+
+    private void vymazReceptSurovinyNaRecept(String recept) throws SQLException {
+        String delete = "delete from suroviny_na_recept where Recepty_idRecepty = ?";
+        int idRecept = getIdReceptu(recept);
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setInt(1, idRecept);
+        preparedStatement.executeUpdate();
+    }
+
+    private void vymazReceptRecepty(String recept) throws SQLException {
+        String delete = "delete from recepty where idRecepty = ?";
+        int idRecept = getIdReceptu(recept);
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setInt(1, idRecept);
+        preparedStatement.executeUpdate();
+    }
 }

@@ -871,7 +871,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_menu_homeMouseClicked
 
     private void jPanel_zoznamReceptov_OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamReceptov_OKMouseClicked
-        if(jList_zoznamReceptov.getSelectedIndex() == -1){
+        if( (jList_zoznamReceptov.getSelectedIndex() == -1) || (jTable_Main_tyzdenZoznam.getSelectedColumn() == 0) ){
             return;
         }
         
@@ -918,13 +918,16 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_pridajRecept.setVisible(true);
         jLabel_pridajRecept_ERROR_hmotnost.setVisible(false);
         jLabel_pridajRecept_ERROR_nazov.setVisible(false);
+        jTextField_pridajRecept_nazovReceptu.setText(null);
+        jTextField_hmotnostSuroviny.setText(null);
+        
+        
+        recept = new Recept();
         try {
             aktualizujTabulky_suroviny();
-            
         } catch (SQLException ex) {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        recept = new Recept();
         
     }//GEN-LAST:event_jPanel_zoznamReceptov_novyReceptMouseClicked
 
@@ -947,7 +950,11 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
         recept.pridajSurovinu(nazovSuroviny, hmotnost);
-        zobrazZvoleneSuroviny(recept);
+        try {
+            aktualizujTabulky_suroviny();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_jPanel_pridajRecept_pridajMouseClicked
@@ -1002,7 +1009,7 @@ public class MainGUI extends javax.swing.JFrame {
             System.out.println(riadok + " "+stlpec+" "+nazov);
             jTable_pridajRecept_zvoleneSuroviny.remove(riadok);
             recept.vymazSurovinu(nazov);
-            zobrazZvoleneSuroviny(recept);
+            zobrazZvoleneSuroviny();
             
             
         }
@@ -1180,11 +1187,14 @@ public class MainGUI extends javax.swing.JFrame {
             listModel.addElement(surovina);
         }
         jList_pridajRecept_suroviny.setModel(listModel);
+        zobrazZvoleneSuroviny();
     }
 
-    private void zobrazZvoleneSuroviny(Recept recept) {
+    private void zobrazZvoleneSuroviny() {
         String [][] list ;
+        
         list = recept.getSuroviny();
+        
         String nazovStlpca[] = {"nazov","hmotnost" };
         DefaultTableModel model =new DefaultTableModel(list, nazovStlpca);
 

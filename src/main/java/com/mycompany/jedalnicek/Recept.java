@@ -14,11 +14,10 @@ import java.util.HashMap;
  */
 public class Recept {
     private String nazovReceptu = "";
-    HashMap<String,Integer> suroviny = new HashMap<String,Integer>();
-    ArrayList<String> list;
-
+    HashMap<String,Integer> suroviny ;
+    
     public Recept() {
-        
+        this.suroviny = new HashMap<String,Integer>();
     }
     
     public void pridajSurovinu(String nazov,int hmotnost){
@@ -43,7 +42,7 @@ public class Recept {
 
     
     public String[][] getSuroviny() {
-        
+
         String [][] list = new String[suroviny.keySet().size()][2] ;
         int i =0;
         for (String nazov : suroviny.keySet()) {

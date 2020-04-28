@@ -7,6 +7,7 @@ package com.mycompany.jedalnicek;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.util.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
@@ -35,10 +38,28 @@ public class MainGUI extends javax.swing.JFrame {
         aktualizujTabulky_main();
         jPanel_pridajRecept.setVisible(false);
         jPanel_pridajRecept.setVisible(false);
+
+        nastavObrazok("src/main/java/com/mycompany/images/home.png",jLabel_home);
+        nastavObrazok("src/main/java/com/mycompany/images/recipe.png", jLabel_recepty_icon);
+        nastavObrazok("src/main/java/com/mycompany/images/add.png", jLabel_add_icon);
+        nastavObrazok("src/main/java/com/mycompany/images/remove.png", jLabel_remove_icon);
+        //novyrecept
+        nastavObrazok("src/main/java/com/mycompany/images/add.png", jLabel_zoznamReceptov_novy);
+        nastavObrazok("src/main/java/com/mycompany/images/ok.png",jLabel_zoznamReceptov_ok);
+        nastavObrazok("src/main/java/com/mycompany/images/edit.png", jLabel_zoznamReceptov_uprav);
+        nastavObrazok("src/main/java/com/mycompany/images/remove.png", jLabel_zoznamReceptov_zmaz);
+        
+        
         
        
     }
-
+    private void nastavObrazok(String path,JLabel label){
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage();
+        Image scaleImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaledicon = new ImageIcon(scaleImg);
+        label.setIcon(scaledicon);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,29 +72,35 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_MAIN = new javax.swing.JPanel();
         jPanel_menu = new javax.swing.JPanel();
         jPanel_menu_home = new javax.swing.JPanel();
+        jLabel_home = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel_menu_recepty = new javax.swing.JPanel();
+        jLabel_recepty_icon = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel_zoznamTyzden = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Main_tyzdenNutrienty = new javax.swing.JTable();
-        jButton_Main_pridajRecept = new javax.swing.JButton();
-        jButton_Main_zmazRecept = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Main_tyzdenZoznam = new javax.swing.JTable();
+        jPanel_zoznamTyzden_OK = new javax.swing.JPanel();
+        jLabel_add_icon = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel_remove_icon = new javax.swing.JLabel();
+        jLabel_main_zvolenyRecept = new javax.swing.JLabel();
         jPanel_zoznamReceptov = new javax.swing.JPanel();
         jLabel_recepty = new javax.swing.JLabel();
-        jPanel_zoznamReceptov_OK = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel_zoznamReceptov_novyRecept = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jList_zoznamReceptov = new javax.swing.JList<>();
-        jPanel_zoznamReceptov_zmaz = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        jPanel_zoznamReceptov_menu = new javax.swing.JPanel();
+        jPanel_zoznamReceptov_OK = new javax.swing.JPanel();
+        jLabel_zoznamReceptov_ok = new javax.swing.JLabel();
+        jPanel_zoznamReceptov_novyRecept = new javax.swing.JPanel();
+        jLabel_zoznamReceptov_novy = new javax.swing.JLabel();
         jPanel_zoznamReceptov_uprav = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
+        jLabel_zoznamReceptov_uprav = new javax.swing.JLabel();
+        jPanel_zoznamReceptov_zmaz = new javax.swing.JPanel();
+        jLabel_zoznamReceptov_zmaz = new javax.swing.JLabel();
         jPanel_pridajRecept = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTextField_pridajRecept_nazovReceptu = new javax.swing.JTextField();
@@ -115,83 +142,105 @@ public class MainGUI extends javax.swing.JFrame {
 
         jPanel_MAIN.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel_menu.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel_menu.setBackground(new java.awt.Color(102, 153, 255));
 
+        jPanel_menu_home.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel_menu_home.setPreferredSize(new java.awt.Dimension(231, 90));
         jPanel_menu_home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_menu_homeMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("HOME");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Domov");
 
         javax.swing.GroupLayout jPanel_menu_homeLayout = new javax.swing.GroupLayout(jPanel_menu_home);
         jPanel_menu_home.setLayout(jPanel_menu_homeLayout);
         jPanel_menu_homeLayout.setHorizontalGroup(
             jPanel_menu_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menu_homeLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel_home, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
         jPanel_menu_homeLayout.setVerticalGroup(
             jPanel_menu_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_menu_homeLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel_home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5))
             .addGroup(jPanel_menu_homeLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
+        jPanel_menu_recepty.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel_menu_recepty.setPreferredSize(new java.awt.Dimension(79, 90));
         jPanel_menu_recepty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_menu_receptyMouseClicked(evt);
             }
         });
 
-        jLabel3.setText("RECEPTY");
+        jLabel_recepty_icon.setPreferredSize(new java.awt.Dimension(40, 14));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Recepty");
 
         javax.swing.GroupLayout jPanel_menu_receptyLayout = new javax.swing.GroupLayout(jPanel_menu_recepty);
         jPanel_menu_recepty.setLayout(jPanel_menu_receptyLayout);
         jPanel_menu_receptyLayout.setHorizontalGroup(
             jPanel_menu_receptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menu_receptyLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel_recepty_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel_menu_receptyLayout.setVerticalGroup(
             jPanel_menu_receptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menu_receptyLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel3)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(jPanel_menu_receptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_menu_receptyLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel_recepty_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_menu_receptyLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel_menuLayout = new javax.swing.GroupLayout(jPanel_menu);
         jPanel_menu.setLayout(jPanel_menuLayout);
         jPanel_menuLayout.setHorizontalGroup(
             jPanel_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_menuLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jPanel_menu_home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jPanel_menu_recepty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel_menu_recepty, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+            .addComponent(jPanel_menu_home, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
         );
         jPanel_menuLayout.setVerticalGroup(
             jPanel_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_menuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel_menu_recepty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_menu_home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jPanel_menu_home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_menu_recepty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(485, Short.MAX_VALUE))
         );
+
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel_zoznamTyzden.setBackground(new java.awt.Color(255, 255, 255));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jTable_Main_tyzdenNutrienty.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable_Main_tyzdenNutrienty.setForeground(new java.awt.Color(51, 51, 51));
         jTable_Main_tyzdenNutrienty.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,6 +262,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         jTable_Main_tyzdenNutrienty.setColumnSelectionAllowed(true);
+        jTable_Main_tyzdenNutrienty.setFillsViewportHeight(true);
         jTable_Main_tyzdenNutrienty.setGridColor(new java.awt.Color(204, 204, 204));
         jTable_Main_tyzdenNutrienty.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jTable_Main_tyzdenNutrienty.setSelectionForeground(new java.awt.Color(0, 0, 0));
@@ -231,24 +281,11 @@ public class MainGUI extends javax.swing.JFrame {
             jTable_Main_tyzdenNutrienty.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jButton_Main_pridajRecept.setText("+");
-        jButton_Main_pridajRecept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Main_pridajReceptActionPerformed(evt);
-            }
-        });
-
-        jButton_Main_zmazRecept.setText("X");
-        jButton_Main_zmazRecept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Main_zmazReceptActionPerformed(evt);
-            }
-        });
-
         jScrollPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane2.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jTable_Main_tyzdenZoznam.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTable_Main_tyzdenZoznam.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable_Main_tyzdenZoznam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"00:00", null, null, null, null, null, null, null},
@@ -303,6 +340,11 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenZoznam.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_Main_tyzdenZoznam.setShowGrid(true);
         jTable_Main_tyzdenZoznam.getTableHeader().setReorderingAllowed(false);
+        jTable_Main_tyzdenZoznam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_Main_tyzdenZoznamMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable_Main_tyzdenZoznam);
         jTable_Main_tyzdenZoznam.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable_Main_tyzdenZoznam.getColumnModel().getColumnCount() > 0) {
@@ -316,6 +358,57 @@ public class MainGUI extends javax.swing.JFrame {
             jTable_Main_tyzdenZoznam.getColumnModel().getColumn(7).setResizable(false);
         }
 
+        jPanel_zoznamTyzden_OK.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamTyzden_OK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_zoznamTyzden_OKMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_zoznamTyzden_OKLayout = new javax.swing.GroupLayout(jPanel_zoznamTyzden_OK);
+        jPanel_zoznamTyzden_OK.setLayout(jPanel_zoznamTyzden_OKLayout);
+        jPanel_zoznamTyzden_OKLayout.setHorizontalGroup(
+            jPanel_zoznamTyzden_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamTyzden_OKLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_add_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel_zoznamTyzden_OKLayout.setVerticalGroup(
+            jPanel_zoznamTyzden_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamTyzden_OKLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_add_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_remove_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_remove_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel_main_zvolenyRecept.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel_main_zvolenyRecept.setForeground(new java.awt.Color(102, 153, 255));
+
         javax.swing.GroupLayout jPanel_zoznamTyzdenLayout = new javax.swing.GroupLayout(jPanel_zoznamTyzden);
         jPanel_zoznamTyzden.setLayout(jPanel_zoznamTyzdenLayout);
         jPanel_zoznamTyzdenLayout.setHorizontalGroup(
@@ -323,139 +416,186 @@ public class MainGUI extends javax.swing.JFrame {
             .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Main_zmazRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+            .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel_main_zvolenyRecept)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_zoznamTyzdenLayout.setVerticalGroup(
             jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                        .addComponent(jButton_Main_pridajRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Main_zmazRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel_main_zvolenyRecept)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jPanel_zoznamReceptov.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov.setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jLabel_recepty.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_recepty.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel_recepty.setForeground(new java.awt.Color(102, 153, 255));
         jLabel_recepty.setText("recepty:");
 
+        jList_zoznamReceptov.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jList_zoznamReceptov.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jList_zoznamReceptov.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList_zoznamReceptov.setSelectionBackground(new java.awt.Color(102, 153, 255));
+        jScrollPane6.setViewportView(jList_zoznamReceptov);
+
+        jPanel_zoznamReceptov_menu.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel_zoznamReceptov_OK.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_zoznamReceptov_OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_OKMouseClicked(evt);
             }
         });
 
-        jLabel2.setText("OK");
-
         javax.swing.GroupLayout jPanel_zoznamReceptov_OKLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_OK);
         jPanel_zoznamReceptov_OK.setLayout(jPanel_zoznamReceptov_OKLayout);
         jPanel_zoznamReceptov_OKLayout.setHorizontalGroup(
             jPanel_zoznamReceptov_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamReceptov_OKLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel_zoznamReceptov_ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel_zoznamReceptov_OKLayout.setVerticalGroup(
             jPanel_zoznamReceptov_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamReceptov_OKLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel_zoznamReceptov_ok, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
+        jPanel_zoznamReceptov_novyRecept.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_zoznamReceptov_novyRecept.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_novyReceptMouseClicked(evt);
             }
         });
 
-        jLabel4.setText("NOVY RECEPT");
-
         javax.swing.GroupLayout jPanel_zoznamReceptov_novyReceptLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_novyRecept);
         jPanel_zoznamReceptov_novyRecept.setLayout(jPanel_zoznamReceptov_novyReceptLayout);
         jPanel_zoznamReceptov_novyReceptLayout.setHorizontalGroup(
             jPanel_zoznamReceptov_novyReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamReceptov_novyReceptLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel4)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel_zoznamReceptov_novy, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel_zoznamReceptov_novyReceptLayout.setVerticalGroup(
             jPanel_zoznamReceptov_novyReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_zoznamReceptov_novyReceptLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel4)
-                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptov_novyReceptLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_zoznamReceptov_novy, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jList_zoznamReceptov.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane6.setViewportView(jList_zoznamReceptov);
-
-        jPanel_zoznamReceptov_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel_zoznamReceptov_zmazMouseClicked(evt);
-            }
-        });
-
-        jLabel16.setText("ZMAZ");
-
-        javax.swing.GroupLayout jPanel_zoznamReceptov_zmazLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_zmaz);
-        jPanel_zoznamReceptov_zmaz.setLayout(jPanel_zoznamReceptov_zmazLayout);
-        jPanel_zoznamReceptov_zmazLayout.setHorizontalGroup(
-            jPanel_zoznamReceptov_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_zoznamReceptov_zmazLayout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jLabel16)
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        jPanel_zoznamReceptov_zmazLayout.setVerticalGroup(
-            jPanel_zoznamReceptov_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_zoznamReceptov_zmazLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel16)
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-
+        jPanel_zoznamReceptov_uprav.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_zoznamReceptov_uprav.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_upravMouseClicked(evt);
             }
         });
 
-        jLabel19.setText("uprav");
-
         javax.swing.GroupLayout jPanel_zoznamReceptov_upravLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_uprav);
         jPanel_zoznamReceptov_uprav.setLayout(jPanel_zoznamReceptov_upravLayout);
         jPanel_zoznamReceptov_upravLayout.setHorizontalGroup(
             jPanel_zoznamReceptov_upravLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_zoznamReceptov_upravLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jLabel19)
-                .addContainerGap(93, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptov_upravLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel_zoznamReceptov_upravLayout.setVerticalGroup(
             jPanel_zoznamReceptov_upravLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptov_upravLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addGap(41, 41, 41))
+            .addGroup(jPanel_zoznamReceptov_upravLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel_zoznamReceptov_zmaz.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_zoznamReceptov_zmazMouseClicked(evt);
+            }
+        });
+
+        jLabel_zoznamReceptov_zmaz.setForeground(new java.awt.Color(255, 255, 51));
+
+        javax.swing.GroupLayout jPanel_zoznamReceptov_zmazLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_zmaz);
+        jPanel_zoznamReceptov_zmaz.setLayout(jPanel_zoznamReceptov_zmazLayout);
+        jPanel_zoznamReceptov_zmazLayout.setHorizontalGroup(
+            jPanel_zoznamReceptov_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptov_zmazLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel_zoznamReceptov_zmazLayout.setVerticalGroup(
+            jPanel_zoznamReceptov_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptov_zmazLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel_zoznamReceptov_menuLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov_menu);
+        jPanel_zoznamReceptov_menu.setLayout(jPanel_zoznamReceptov_menuLayout);
+        jPanel_zoznamReceptov_menuLayout.setHorizontalGroup(
+            jPanel_zoznamReceptov_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamReceptov_menuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_zoznamReceptov_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel_zoznamReceptov_novyRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_zoznamReceptov_OK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel_zoznamReceptov_menuLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel_zoznamReceptov_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel_zoznamReceptov_menuLayout.setVerticalGroup(
+            jPanel_zoznamReceptov_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamReceptov_menuLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanel_zoznamReceptov_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel_zoznamReceptov_novyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel_zoznamReceptovLayout = new javax.swing.GroupLayout(jPanel_zoznamReceptov);
@@ -463,47 +603,25 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_zoznamReceptovLayout.setHorizontalGroup(
             jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_recepty)
                     .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel_recepty))
-                    .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                                .addComponent(jPanel_zoznamReceptov_novyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71)
-                                .addComponent(jPanel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                                .addComponent(jPanel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel_zoznamReceptov_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(255, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel_zoznamReceptov_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel_zoznamReceptovLayout.setVerticalGroup(
             jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel_recepty)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                        .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel_zoznamReceptov_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel_zoznamReceptovLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel_zoznamReceptov_novyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel_zoznamReceptov_uprav, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(119, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamReceptovLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel_zoznamReceptov_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108))))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_zoznamReceptov_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
 
         jPanel_pridajRecept.setBackground(new java.awt.Color(255, 255, 255));
@@ -547,16 +665,16 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_pridajRecept_OKLayout.setHorizontalGroup(
             jPanel_pridajRecept_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajRecept_OKLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel8)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel_pridajRecept_OKLayout.setVerticalGroup(
             jPanel_pridajRecept_OKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_pridajRecept_OKLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_pridajRecept_OKLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
 
         jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
@@ -706,24 +824,27 @@ public class MainGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField_pridajSurovinu_nazov, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(jTextField_pridajSurovinu_nazov, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                                     .addComponent(jTextField_pridajSurovinu_bielkoviny)))
                             .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField_pridajSurovinu_sacharidy, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                                    .addComponent(jTextField_pridajSurovinu_tuky)))))
+                                    .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel13))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField_pridajSurovinu_sacharidy)
+                                            .addComponent(jTextField_pridajSurovinu_tuky)))
+                                    .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(jPanel_pridajSurovinu_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 13, Short.MAX_VALUE))))))
                     .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel15))
-                    .addGroup(jPanel_pridajSurovinuLayout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jPanel_pridajSurovinu_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(jLabel15)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel_pridajSurovinuLayout.setVerticalGroup(
             jPanel_pridajSurovinuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -748,7 +869,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(jTextField_pridajSurovinu_tuky, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jPanel_pridajSurovinu_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel_pridajRecept_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -764,16 +885,16 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_pridajRecept_zmazLayout.setHorizontalGroup(
             jPanel_pridajRecept_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajRecept_zmazLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel18)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel_pridajRecept_zmazLayout.setVerticalGroup(
             jPanel_pridajRecept_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajRecept_zmazLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel18)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel_pridajReceptLayout = new javax.swing.GroupLayout(jPanel_pridajRecept);
@@ -781,78 +902,75 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_pridajReceptLayout.setHorizontalGroup(
             jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_pridajRecept_ERROR_nazov)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_pridajRecept_ERROR_nazov)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel6)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                                .addComponent(jTextField_hmotnostSuroviny))
-                            .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
                                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41))
-                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(24, 24, 24)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10))
         );
         jPanel_pridajReceptLayout.setVerticalGroup(
             jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_pridajRecept_ERROR_nazov)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_pridajRecept_nazovReceptu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_pridajRecept_ERROR_nazov)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addGap(75, 75, 75)
+                                .addGap(28, 28, 28)
                                 .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel_pridajRecept_ERROR_hmotnost)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(103, 103, 103))
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(41, 41, 41)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_pridajRecept_ERROR_hmotnost)
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                        .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
         );
 
         jLayeredPane1.setLayer(jPanel_zoznamTyzden, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -863,30 +981,37 @@ public class MainGUI extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jPanel_zoznamTyzden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jPanel_zoznamTyzden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel_zoznamReceptov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel_zoznamReceptov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel_pridajRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel_pridajRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel_zoznamTyzden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel_zoznamReceptov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel_zoznamReceptov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel_pridajRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel_pridajRecept, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout jPanel_MAINLayout = new javax.swing.GroupLayout(jPanel_MAIN);
@@ -894,18 +1019,20 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_MAINLayout.setHorizontalGroup(
             jPanel_MAINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_MAINLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
-            .addComponent(jPanel_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel_MAINLayout.setVerticalGroup(
             jPanel_MAINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_MAINLayout.createSequentialGroup()
-                .addComponent(jPanel_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel_MAINLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_MAINLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -916,55 +1043,11 @@ public class MainGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_MAIN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_MAIN, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton_Main_pridajReceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Main_pridajReceptActionPerformed
-      
-        
-        int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
-        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
-        
-        if( (den>0) && (hodina>=0) ){
-            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)==null){
-                jPanel_zoznamTyzden.setVisible(false);
-                jPanel_zoznamReceptov.setVisible(true);
-                try {
-                   aktualizujTabulky_recepty();
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton_Main_pridajReceptActionPerformed
-
-    private void jButton_Main_zmazReceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Main_zmazReceptActionPerformed
-        int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
-        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
-        
-        if( (den>0) && (hodina>=0) ){
-            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)!=null){
-                jTable_Main_tyzdenZoznam.setValueAt(null, hodina, den);
-                try {
-                    databaza.vymazReceptZDenHasRecept(hodina,den);
-                    aktualizujTabulky_main();
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }//GEN-LAST:event_jButton_Main_zmazReceptActionPerformed
 
     private void jPanel_menu_homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_menu_homeMouseClicked
         jPanel_zoznamReceptov.setVisible(false);
@@ -1073,7 +1156,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void jPanel_pridajRecept_OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_pridajRecept_OKMouseClicked
         String nazov = jTextField_pridajRecept_nazovReceptu.getText();
         String staryNazov = recept.getNazovReceptu();
-        if(nazov.isEmpty() || staryNazov.isEmpty()){
+        if(nazov.isEmpty()){
             jLabel_pridajRecept_ERROR_nazov.setVisible(true);
             return;
         }
@@ -1257,6 +1340,49 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPanel_zoznamReceptov_upravMouseClicked
 
+    private void jPanel_zoznamTyzden_OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamTyzden_OKMouseClicked
+                int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
+        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
+        
+        if( (den>0) && (hodina>=0) ){
+            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)==null){
+                jPanel_zoznamTyzden.setVisible(false);
+                jPanel_zoznamReceptov.setVisible(true);
+                try {
+                   aktualizujTabulky_recepty();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jPanel_zoznamTyzden_OKMouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+       int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
+        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
+        
+        if( (den>0) && (hodina>=0) ){
+            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)!=null){
+                jTable_Main_tyzdenZoznam.setValueAt(null, hodina, den);
+                try {
+                    databaza.vymazReceptZDenHasRecept(hodina,den);
+                    aktualizujTabulky_main();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jTable_Main_tyzdenZoznamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Main_tyzdenZoznamMouseClicked
+       int riadok = jTable_Main_tyzdenZoznam.getSelectedRow();
+       int stlpec = jTable_Main_tyzdenZoznam.getSelectedColumn();
+       
+       if(stlpec>0){
+           jLabel_main_zvolenyRecept.setText((String) jTable_Main_tyzdenZoznam.getValueAt(riadok, stlpec));
+       }
+    }//GEN-LAST:event_jTable_Main_tyzdenZoznamMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1297,8 +1423,6 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Main_pridajRecept;
-    private javax.swing.JButton jButton_Main_zmazRecept;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1306,24 +1430,30 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_add_icon;
+    private javax.swing.JLabel jLabel_home;
+    private javax.swing.JLabel jLabel_main_zvolenyRecept;
     private javax.swing.JLabel jLabel_pridajRecept_ERROR_hmotnost;
     private javax.swing.JLabel jLabel_pridajRecept_ERROR_nazov;
     private javax.swing.JLabel jLabel_recepty;
+    private javax.swing.JLabel jLabel_recepty_icon;
+    private javax.swing.JLabel jLabel_remove_icon;
+    private javax.swing.JLabel jLabel_zoznamReceptov_novy;
+    private javax.swing.JLabel jLabel_zoznamReceptov_ok;
+    private javax.swing.JLabel jLabel_zoznamReceptov_uprav;
+    private javax.swing.JLabel jLabel_zoznamReceptov_zmaz;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JList<String> jList_pridajRecept_suroviny;
     private javax.swing.JList<String> jList_zoznamReceptov;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_MAIN;
     private javax.swing.JPanel jPanel_menu;
     private javax.swing.JPanel jPanel_menu_home;
@@ -1337,10 +1467,12 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_pridajSurovinu_OK;
     private javax.swing.JPanel jPanel_zoznamReceptov;
     private javax.swing.JPanel jPanel_zoznamReceptov_OK;
+    private javax.swing.JPanel jPanel_zoznamReceptov_menu;
     private javax.swing.JPanel jPanel_zoznamReceptov_novyRecept;
     private javax.swing.JPanel jPanel_zoznamReceptov_uprav;
     private javax.swing.JPanel jPanel_zoznamReceptov_zmaz;
     private javax.swing.JPanel jPanel_zoznamTyzden;
+    private javax.swing.JPanel jPanel_zoznamTyzden_OK;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

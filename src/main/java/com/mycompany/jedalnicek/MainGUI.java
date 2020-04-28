@@ -102,6 +102,8 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel_pridajSurovinu_OK = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jPanel_pridajRecept_zmaz = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jedalnicek");
@@ -716,6 +718,31 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
+        jPanel_pridajRecept_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel_pridajRecept_zmazMouseClicked(evt);
+            }
+        });
+
+        jLabel18.setText("ZMAZ");
+
+        javax.swing.GroupLayout jPanel_pridajRecept_zmazLayout = new javax.swing.GroupLayout(jPanel_pridajRecept_zmaz);
+        jPanel_pridajRecept_zmaz.setLayout(jPanel_pridajRecept_zmazLayout);
+        jPanel_pridajRecept_zmazLayout.setHorizontalGroup(
+            jPanel_pridajRecept_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_pridajRecept_zmazLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jLabel18)
+                .addContainerGap(89, Short.MAX_VALUE))
+        );
+        jPanel_pridajRecept_zmazLayout.setVerticalGroup(
+            jPanel_pridajRecept_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_pridajRecept_zmazLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel18)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel_pridajReceptLayout = new javax.swing.GroupLayout(jPanel_pridajRecept);
         jPanel_pridajRecept.setLayout(jPanel_pridajReceptLayout);
         jPanel_pridajReceptLayout.setHorizontalGroup(
@@ -731,23 +758,26 @@ public class MainGUI extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
                         .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel6)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                .addComponent(jTextField_hmotnostSuroviny))
+                            .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
-                                .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel_pridajRecept_ERROR_hmotnost, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                                    .addComponent(jTextField_hmotnostSuroviny))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                                 .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel_pridajRecept_pridaj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jPanel_pridajRecept_odober, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)))
+                                .addGap(41, 41, 41))
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jPanel_pridajSurovinu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76))))
         );
@@ -783,9 +813,12 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel_pridajReceptLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_pridajReceptLayout.createSequentialGroup()
+                                .addComponent(jTextField_hmotnostSuroviny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(jPanel_pridajRecept_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel_pridajRecept_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(103, 103, 103))
         );
 
@@ -1116,10 +1149,11 @@ public class MainGUI extends javax.swing.JFrame {
             
             
             databaza.vlozSurovinu(nazov,bielkoviny,sacharidy,tuky);
+            
             jTextField_pridajSurovinu_nazov.setText(null);                                                                      //sa ti opakuje
-                jTextField_pridajSurovinu_bielkoviny.setText(null);
-                jTextField_pridajSurovinu_sacharidy.setText(null);
-                jTextField_pridajSurovinu_tuky.setText(null);
+            jTextField_pridajSurovinu_bielkoviny.setText(null);
+            jTextField_pridajSurovinu_sacharidy.setText(null);
+            jTextField_pridajSurovinu_tuky.setText(null);
              aktualizujTabulky_suroviny();
         } catch (SQLException ex) {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1141,6 +1175,22 @@ public class MainGUI extends javax.swing.JFrame {
         jTextField_pridajSurovinu_sacharidy.setText(String.valueOf(surovina.getSacharidy()));
         jTextField_pridajSurovinu_tuky.setText(String.valueOf(surovina.getTuky()));
     }//GEN-LAST:event_jTable_pridajRecept_zvoleneSurovinyMouseClicked
+
+    private void jPanel_pridajRecept_zmazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_pridajRecept_zmazMouseClicked
+        if(jList_pridajRecept_suroviny.isSelectionEmpty()){
+            return;
+        }
+        String nazovSuroviny = jList_pridajRecept_suroviny.getSelectedValue();
+        if(nazovSuroviny.isEmpty()){
+            return;
+        }
+        try {
+            databaza.vymazSurovinu(nazovSuroviny);
+            aktualizujTabulky_suroviny();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jPanel_pridajRecept_zmazMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1193,6 +1243,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1215,6 +1266,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_pridajRecept_OK;
     private javax.swing.JPanel jPanel_pridajRecept_odober;
     private javax.swing.JPanel jPanel_pridajRecept_pridaj;
+    private javax.swing.JPanel jPanel_pridajRecept_zmaz;
     private javax.swing.JPanel jPanel_pridajSurovinu;
     private javax.swing.JPanel jPanel_pridajSurovinu_OK;
     private javax.swing.JPanel jPanel_zoznamReceptov;

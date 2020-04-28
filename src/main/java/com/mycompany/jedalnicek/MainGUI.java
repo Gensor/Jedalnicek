@@ -25,8 +25,7 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         databaza = new DBconnect();
         aktualizujTabulky_main();
-        jPanel_pridajRecept.setVisible(false);
-        jPanel_pridajRecept.setVisible(false);
+        zobrazMainObrazovku();
         //main
         nastavObrazok("src/main/java/com/mycompany/images/home.png",jLabel_home);
         nastavObrazok("src/main/java/com/mycompany/images/recipe.png", jLabel_recepty_icon);
@@ -83,7 +82,7 @@ public class MainGUI extends javax.swing.JFrame {
         jTable_Main_tyzdenZoznam = new javax.swing.JTable();
         jPanel_zoznamTyzden_OK = new javax.swing.JPanel();
         jLabel_add_icon = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel_zoznamTyzden_zmaz = new javax.swing.JPanel();
         jLabel_remove_icon = new javax.swing.JLabel();
         jLabel_main_zvolenyRecept = new javax.swing.JLabel();
         jPanel_zoznamReceptov = new javax.swing.JPanel();
@@ -314,9 +313,16 @@ public class MainGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTable_Main_tyzdenNutrienty.setColumnSelectionAllowed(true);
@@ -379,7 +385,7 @@ public class MainGUI extends javax.swing.JFrame {
                 java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -392,7 +398,6 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jTable_Main_tyzdenZoznam.setColumnSelectionAllowed(true);
         jTable_Main_tyzdenZoznam.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable_Main_tyzdenZoznam.setRowHeight(32);
         jTable_Main_tyzdenZoznam.setSelectionBackground(new java.awt.Color(51, 153, 255));
         jTable_Main_tyzdenZoznam.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_Main_tyzdenZoznam.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -440,53 +445,50 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel_zoznamTyzden_zmaz.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamTyzden_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                jPanel_zoznamTyzden_zmazMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel_zoznamTyzden_zmazLayout = new javax.swing.GroupLayout(jPanel_zoznamTyzden_zmaz);
+        jPanel_zoznamTyzden_zmaz.setLayout(jPanel_zoznamTyzden_zmazLayout);
+        jPanel_zoznamTyzden_zmazLayout.setHorizontalGroup(
+            jPanel_zoznamTyzden_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamTyzden_zmazLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_remove_icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel_zoznamTyzden_zmazLayout.setVerticalGroup(
+            jPanel_zoznamTyzden_zmazLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_zoznamTyzden_zmazLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel_remove_icon, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jLabel_main_zvolenyRecept.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel_main_zvolenyRecept.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel_main_zvolenyRecept.setForeground(new java.awt.Color(90, 140, 255));
 
         javax.swing.GroupLayout jPanel_zoznamTyzdenLayout = new javax.swing.GroupLayout(jPanel_zoznamTyzden);
         jPanel_zoznamTyzden.setLayout(jPanel_zoznamTyzdenLayout);
         jPanel_zoznamTyzdenLayout.setHorizontalGroup(
             jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-            .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
                 .addGap(149, 149, 149)
-                .addComponent(jLabel_main_zvolenyRecept)
+                .addComponent(jLabel_main_zvolenyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_zoznamTyzden_zmaz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel_zoznamTyzdenLayout.setVerticalGroup(
             jPanel_zoznamTyzdenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,15 +498,15 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel_zoznamTyzden_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_zoznamTyzdenLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel_main_zvolenyRecept)
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_main_zvolenyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel_zoznamReceptov.setBackground(new java.awt.Color(255, 255, 255));
@@ -677,8 +679,8 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(jLabel_recepty)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel_zoznamReceptovLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_zoznamReceptov_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_zoznamReceptov_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -1127,15 +1129,13 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
         String nazovReceptu = jList_zoznamReceptov.getSelectedValue();
-        nastavRiadokDen();
-        
+        nastavHodinaDen();
         
         if(nazovReceptu.isEmpty()){
             return;
         }
         
         try {
-            
             databaza.vlozReceptDenHasRecepty(nazovReceptu,den,hodina);
         } catch (SQLException ex) {
             System.out.println(ex.toString());;
@@ -1151,9 +1151,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_zoznamReceptov_OKMouseClicked
 
     private void jPanel_menu_receptyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_menu_receptyMouseClicked
-        jPanel_zoznamTyzden.setVisible(false);
-        jPanel_pridajRecept.setVisible(false);
-        jPanel_zoznamReceptov.setVisible(true);
+        zobrazZoznamReceptovObrazovku();
         try {
             aktualizujTabulky_recepty();
         } catch (SQLException ex) {
@@ -1163,15 +1161,13 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_menu_receptyMouseClicked
 
     private void jPanel_zoznamReceptov_novyReceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamReceptov_novyReceptMouseClicked
-        jPanel_zoznamReceptov.setVisible(false);
-        jPanel_pridajRecept.setVisible(true);
-        jLabel_pridajRecept_ERROR_hmotnost.setVisible(false);
-        jLabel_pridajRecept_ERROR_nazov.setVisible(false);
-        jTextField_pridajRecept_nazovReceptu.setText(null);
-        jTextField_hmotnostSuroviny.setText(null);
+        resetniPridajSurovinuTextFieldy();
+        zobrazPridajReceptObrazovku();
         
+        jTextField_pridajRecept_nazovReceptu.setText(null);
         
         recept = new Recept();
+        
         try {
             aktualizujTabulky_suroviny();
         } catch (SQLException ex) {
@@ -1184,13 +1180,9 @@ public class MainGUI extends javax.swing.JFrame {
         if(jList_zoznamReceptov.isSelectionEmpty()){
             return;
         }
-        String recept = jList_zoznamReceptov.getSelectedValue();
+        String nazovReceptu = jList_zoznamReceptov.getSelectedValue();
         try {
-            databaza.vymazRecept(recept);
-        } catch (SQLException ex) {
-            Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
+            databaza.vymazRecept(nazovReceptu);
             aktualizujTabulky_recepty();
             jList_zoznamReceptov.setSelectedIndex(-1);
         } catch (SQLException ex) {
@@ -1211,12 +1203,9 @@ public class MainGUI extends javax.swing.JFrame {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        jPanel_zoznamReceptov.setVisible(false);
-        jPanel_pridajRecept.setVisible(true);
-        jLabel_pridajRecept_ERROR_hmotnost.setVisible(false);
-        jLabel_pridajRecept_ERROR_nazov.setVisible(false);
+        zobrazPridajReceptObrazovku();
+        
         jTextField_pridajRecept_nazovReceptu.setText(recept.getNazovReceptu());
-        jTextField_hmotnostSuroviny.setText(null);  
         try {
             aktualizujTabulky_suroviny();
         } catch (SQLException ex) {
@@ -1225,13 +1214,10 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_zoznamReceptov_upravMouseClicked
 
     private void jPanel_zoznamTyzden_OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamTyzden_OKMouseClicked
-                int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
-        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
-        
+        nastavHodinaDen();
         if( (den>0) && (hodina>=0) ){
             if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)==null){
-                jPanel_zoznamTyzden.setVisible(false);
-                jPanel_zoznamReceptov.setVisible(true);
+                zobrazZoznamReceptovObrazovku();
                 try {
                    aktualizujTabulky_recepty();
                 } catch (SQLException ex) {
@@ -1241,10 +1227,8 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPanel_zoznamTyzden_OKMouseClicked
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-       int hodina = jTable_Main_tyzdenZoznam.getSelectedRow();
-        int den = jTable_Main_tyzdenZoznam.getSelectedColumn();
-        
+    private void jPanel_zoznamTyzden_zmazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamTyzden_zmazMouseClicked
+        nastavHodinaDen();
         if( (den>0) && (hodina>=0) ){
             if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)!=null){
                 jTable_Main_tyzdenZoznam.setValueAt(null, hodina, den);
@@ -1256,14 +1240,12 @@ public class MainGUI extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jPanel1MouseClicked
+    }//GEN-LAST:event_jPanel_zoznamTyzden_zmazMouseClicked
 
     private void jTable_Main_tyzdenZoznamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Main_tyzdenZoznamMouseClicked
-       int riadok = jTable_Main_tyzdenZoznam.getSelectedRow();
-       int stlpec = jTable_Main_tyzdenZoznam.getSelectedColumn();
-       
-       if(stlpec>0){
-           jLabel_main_zvolenyRecept.setText((String) jTable_Main_tyzdenZoznam.getValueAt(riadok, stlpec));
+       nastavHodinaDen();
+       if(den>0){
+           jLabel_main_zvolenyRecept.setText((String) jTable_Main_tyzdenZoznam.getValueAt(hodina, den));
        }
     }//GEN-LAST:event_jTable_Main_tyzdenZoznamMouseClicked
 
@@ -1271,6 +1253,7 @@ public class MainGUI extends javax.swing.JFrame {
         if(jList_pridajRecept_suroviny.isSelectionEmpty()){
             return;
         }
+        
         String nazovSuroviny = jList_pridajRecept_suroviny.getSelectedValue();
         if(nazovSuroviny.isEmpty()){
             return;
@@ -1284,47 +1267,41 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_pridajRecept_zmazMouseClicked
 
     private void jPanel_pridajSurovinu_OKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_pridajSurovinu_OKMouseClicked
-        String nazov ;
+         
         float bielkoviny = -1;
         float sacharidy = -1;
         float tuky = -1;
-        nazov = jTextField_pridajSurovinu_nazov.getText();
+        String nazov = jTextField_pridajSurovinu_nazov.getText();
         if(nazov.isEmpty()){
-            return;                                                                                      //dorob
+            return;                                                                                      
         }
         try {
             bielkoviny = Float.valueOf(jTextField_pridajSurovinu_bielkoviny.getText());
             if(bielkoviny<0){
-                return;                                                                                     //dorob
+                return;                                                                                     
             }
             sacharidy = Float.valueOf(jTextField_pridajSurovinu_sacharidy.getText());
             if(sacharidy<0){
-                return;                                                                                     //dorob
+                return;                                                                                     
             }
             tuky = Float.valueOf(jTextField_pridajSurovinu_tuky.getText());
             if(tuky<0){
-                return;                                                                                     //dorob
+                return;                                                                                     
             }
         } catch (NumberFormatException e) {
-            e.printStackTrace();                                                                                        //dorob
+            e.printStackTrace();
+            return;
         }
 
         try {
             if(databaza.hasSurovina(nazov)){
                 databaza.setSurovina(nazov,bielkoviny,sacharidy,tuky);
-                jTextField_pridajSurovinu_nazov.setText(null);
-                jTextField_pridajSurovinu_bielkoviny.setText(null);
-                jTextField_pridajSurovinu_sacharidy.setText(null);
-                jTextField_pridajSurovinu_tuky.setText(null);
+                resetniPridajSurovinuTextFieldy();
                 return;
             }
 
             databaza.vlozSurovinu(nazov,bielkoviny,sacharidy,tuky);
-
-            jTextField_pridajSurovinu_nazov.setText(null);                                                                      //sa ti opakuje
-            jTextField_pridajSurovinu_bielkoviny.setText(null);
-            jTextField_pridajSurovinu_sacharidy.setText(null);
-            jTextField_pridajSurovinu_tuky.setText(null);
+            resetniPridajSurovinuTextFieldy();
             aktualizujTabulky_suroviny();
         } catch (SQLException ex) {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1345,14 +1322,9 @@ public class MainGUI extends javax.swing.JFrame {
             return;
         }
         else{
-
             recept.vymazSurovinu(nazov);
-
             zobrazZvoleneSuroviny();
-            jTextField_pridajSurovinu_nazov.setText(null);                                                                      //sa ti opakuje
-            jTextField_pridajSurovinu_bielkoviny.setText(null);
-            jTextField_pridajSurovinu_sacharidy.setText(null);
-            jTextField_pridajSurovinu_tuky.setText(null);
+            resetniPridajSurovinuTextFieldy();
 
         }
     }//GEN-LAST:event_jPanel_pridajRecept_odoberMouseClicked
@@ -1393,6 +1365,7 @@ public class MainGUI extends javax.swing.JFrame {
             surovina = databaza.getSurovina(nazov);
         } catch (SQLException ex) {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
         jTextField_pridajSurovinu_nazov.setText(nazov);
         jTextField_pridajSurovinu_bielkoviny.setText(String.valueOf(surovina.getBielkoviny()));
@@ -1426,8 +1399,7 @@ public class MainGUI extends javax.swing.JFrame {
                 Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        jPanel_pridajRecept.setVisible(false);
-        jPanel_zoznamReceptov.setVisible(true);
+        zobrazZoznamReceptovObrazovku();
         try {
             aktualizujTabulky_recepty();
         } catch (SQLException ex) {
@@ -1462,11 +1434,7 @@ public class MainGUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1528,7 +1496,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JList<String> jList_pridajRecept_suroviny;
     private javax.swing.JList<String> jList_zoznamReceptov;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel_MAIN;
@@ -1551,6 +1518,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_zoznamReceptov_zmaz;
     private javax.swing.JPanel jPanel_zoznamTyzden;
     private javax.swing.JPanel jPanel_zoznamTyzden_OK;
+    private javax.swing.JPanel jPanel_zoznamTyzden_zmaz;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1567,27 +1535,25 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_pridajSurovinu_tuky;
     // End of variables declaration//GEN-END:variables
 
-    private void zobrazRecepty_zoznamTyzden(DBconnect dbconect) throws SQLException {
+    private void zobrazRecepty_zoznamTyzden() throws SQLException {
        
         for (int hodina = 0; hodina < 24; hodina++) {
             for (int den = 1; den < 8; den++) {
                
                 String nazovRecept = null;
-                nazovRecept = dbconect.getReceptDenHodina(den,hodina);
-                
-                    
-                    jTable_Main_tyzdenZoznam.setValueAt(nazovRecept, hodina, den);
+                nazovRecept = databaza.getReceptDenHodina(den,hodina);
+                jTable_Main_tyzdenZoznam.setValueAt(nazovRecept, hodina, den);
                 
             }
         }
         
     }
+    
     private void aktualizujTabulky_recepty() throws SQLException{
         
         ArrayList<String> recepty = new ArrayList<String>();
         recepty = databaza.getRecepty();
-        
-       DefaultListModel listModel = new DefaultListModel();
+        DefaultListModel listModel = new DefaultListModel();
         for (String recept : recepty) {
             listModel.addElement(recept);
         }
@@ -1595,7 +1561,7 @@ public class MainGUI extends javax.swing.JFrame {
     
     }
     
-    private void zobrazMakronutrie_zoznamTyzden(DBconnect databaza) throws SQLException {
+    private void zobrazMakronutrie_zoznamTyzden() throws SQLException {
        
         for (int den = 1; den < 8; den++) {
              int bielkoviny = databaza.getBielkovinyNaDen(den);
@@ -1610,12 +1576,10 @@ public class MainGUI extends javax.swing.JFrame {
         }
         
     }
-
-   
     
     private void aktualizujTabulky_main() throws SQLException{
-        zobrazRecepty_zoznamTyzden(databaza);
-        zobrazMakronutrie_zoznamTyzden(databaza);
+        zobrazRecepty_zoznamTyzden();
+        zobrazMakronutrie_zoznamTyzden();
     }
 
     private void aktualizujTabulky_suroviny() throws SQLException {
@@ -1631,24 +1595,47 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void zobrazZvoleneSuroviny() {
         String [][] list ;
-        
         list = recept.getSuroviny();
         
         String nazovStlpca[] = {"nazov","hmotnost" };
         DefaultTableModel model =new DefaultTableModel(list, nazovStlpca);
-
-        
         jTable_pridajRecept_zvoleneSuroviny.setModel(model);
-        
     }
-        private void zobrazMainObrazovku(){
+    
+    private void zobrazMainObrazovku(){
         jPanel_zoznamReceptov.setVisible(false);
         jPanel_pridajRecept.setVisible(false);
         jPanel_zoznamTyzden.setVisible(true);
     }
+
+    private void zobrazZoznamReceptovObrazovku() {
+        jPanel_zoznamTyzden.setVisible(false);
+        jPanel_pridajRecept.setVisible(false);
+        jPanel_zoznamReceptov.setVisible(true);
+    }
     
-    private void nastavRiadokDen(){
+    private void nastavHodinaDen(){
         hodina = jTable_Main_tyzdenZoznam.getSelectedRow();                        
         den = jTable_Main_tyzdenZoznam.getSelectedColumn();
+    }
+
+    private void zobrazPridajReceptObrazovku() {
+        skryErrorHlasky();
+        jTextField_hmotnostSuroviny.setText(null);
+        jPanel_zoznamTyzden.setVisible(false);
+        jPanel_zoznamReceptov.setVisible(false);
+        jPanel_pridajRecept.setVisible(true);
+    }
+
+    private void skryErrorHlasky() {
+        jLabel_pridajRecept_ERROR_hmotnost.setVisible(false);
+        jLabel_pridajRecept_ERROR_nazov.setVisible(false);
+    }
+
+    private void resetniPridajSurovinuTextFieldy() {
+        jTextField_pridajSurovinu_nazov.setText(null);            
+        jTextField_pridajSurovinu_bielkoviny.setText(null);
+        jTextField_pridajSurovinu_sacharidy.setText(null);
+        jTextField_pridajSurovinu_tuky.setText(null);
     }
 }

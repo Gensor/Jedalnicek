@@ -273,9 +273,9 @@ public class DBconnect {
         preparedStatement.executeUpdate();
     }
 
-    private void vymazReceptSurovinyNaRecept(String recept) throws SQLException {
+    private void vymazReceptSurovinyNaRecept(String nazovReceptu) throws SQLException {
         String delete = "delete from suroviny_na_recept where Recepty_idRecepty = ?";
-        int idRecept = getIdReceptu(recept);
+        int idRecept = getIdReceptu(nazovReceptu);
         preparedStatement = connection.prepareStatement(delete);
         preparedStatement.setInt(1, idRecept);
         preparedStatement.executeUpdate();
@@ -344,4 +344,55 @@ public class DBconnect {
         
         return null;
     }
+
+    void vymazSurovinu(String nazovSuroviny) throws SQLException {
+        if(!hasSurovina(nazovSuroviny)){
+            return;
+        }
+        int idSuroviny = getIdSuroviny(nazovSuroviny);
+        String delete ="DELETE FROM mydb.suroviny WHERE idSuroviny = ?";
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setInt(1, idSuroviny);
+        preparedStatement.executeUpdate();
+    }
+
+    HashMap<String, Integer> getSurovinyReceptu(String nazovReceptu) throws SQLException {
+        HashMap<String, Integer> list = new HashMap<>();
+        int idReceptu = getIdReceptu(nazovReceptu);
+        String select = "SELECT s.nazov as nazov, t.hmotnostSuroviny as hmotnost "
+                + "FROM mydb.suroviny_na_recept t "
+                + "join suroviny s on s.idSuroviny=t.Suroviny_idSuroviny "
+                + "where t.Recepty_idRecepty = ?" ;
+        preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setInt(1, idReceptu);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        
+        while(resultSet.next()){
+           String surovina =resultSet.getString("nazov");
+           int hmotnost = resultSet.getInt("hmotnost");
+           list.put(surovina, hmotnost);
+           
+           
+        }
+        return list;
+        
+    }
+
+    void upravSurovinyNaRecept(Recept recept) throws SQLException {
+        vymazReceptSurovinyNaRecept(recept.getNazovReceptu());
+        vlozSurovinyNaRecept(recept);
+        
+    }
+
+    void upravRecept(String nazov,String novyNazov) throws SQLException {
+        int idReceptu = getIdReceptu(nazov);
+        String update = "UPDATE mydb.recepty t SET t.nazov = ? WHERE t.idRecepty = ?";
+        preparedStatement = connection.prepareStatement(update);
+        preparedStatement.setString(1, novyNazov);
+        preparedStatement.setInt(2, idReceptu);
+        preparedStatement.executeUpdate();
+        
+    }
+    
+    
 }

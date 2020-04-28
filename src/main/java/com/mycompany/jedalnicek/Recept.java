@@ -40,6 +40,11 @@ public class Recept {
         this.nazovReceptu = nazovReceptu;
     }
 
+    public void setSuroviny(HashMap<String, Integer> suroviny) {
+        this.suroviny = suroviny;
+    }
+    
+    
     
     public String[][] getSuroviny() {
 

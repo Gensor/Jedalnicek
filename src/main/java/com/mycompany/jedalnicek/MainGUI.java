@@ -27,28 +27,28 @@ public class MainGUI extends javax.swing.JFrame {
         aktualizujTabulky_main();
         zobrazMainObrazovku();
         //main
-        nastavObrazok("src/main/java/com/mycompany/images/home.png",jLabel_home);
-        nastavObrazok("src/main/java/com/mycompany/images/recipe.png", jLabel_recepty_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/add.png", jLabel_add_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/remove.png", jLabel_remove_icon);
+        nastavObrazok("images/home.png",jLabel_home);
+        nastavObrazok("images/recipe.png", jLabel_recepty_icon);
+        nastavObrazok("images/add.png", jLabel_add_icon);
+        nastavObrazok("images/remove.png", jLabel_remove_icon);
         // zoznam receptov
-        nastavObrazok("src/main/java/com/mycompany/images/add.png", jLabel_zoznamReceptov_novy);
-        nastavObrazok("src/main/java/com/mycompany/images/ok.png",jLabel_zoznamReceptov_ok);
-        nastavObrazok("src/main/java/com/mycompany/images/edit.png", jLabel_zoznamReceptov_uprav);
-        nastavObrazok("src/main/java/com/mycompany/images/remove.png", jLabel_zoznamReceptov_zmaz);
+        nastavObrazok("images/add.png", jLabel_zoznamReceptov_novy);
+        nastavObrazok("images/ok.png",jLabel_zoznamReceptov_ok);
+        nastavObrazok("images/edit.png", jLabel_zoznamReceptov_uprav);
+        nastavObrazok("images/remove.png", jLabel_zoznamReceptov_zmaz);
         // pridaj uprav recept
-        nastavObrazok("src/main/java/com/mycompany/images/up.png", jLabel_pridajRecept_odober_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/down.png", jLabel_pridajRecept_pridaj_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/remove.png", jLabel_pridajRecept_zmaz_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/edit.png", jLabel_pridajRecept_uprav_icon);
-        nastavObrazok("src/main/java/com/mycompany/images/ok.png", jLabel_pridajRecept_ok_icon);
+        nastavObrazok("images/up.png", jLabel_pridajRecept_odober_icon);
+        nastavObrazok("images/down.png", jLabel_pridajRecept_pridaj_icon);
+        nastavObrazok("images/remove.png", jLabel_pridajRecept_zmaz_icon);
+        nastavObrazok("images/edit.png", jLabel_pridajRecept_uprav_icon);
+        nastavObrazok("images/ok.png", jLabel_pridajRecept_ok_icon);
         
         
         
        
     }
     private void nastavObrazok(String path,JLabel label){
-        ImageIcon icon = new ImageIcon(path);
+        ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(path));
         Image img = icon.getImage();
         Image scaleImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon scaledicon = new ImageIcon(scaleImg);

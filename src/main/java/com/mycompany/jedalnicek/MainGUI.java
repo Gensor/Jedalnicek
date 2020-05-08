@@ -438,7 +438,7 @@ public class MainGUI extends javax.swing.JFrame {
             jTable_Main_tyzdenZoznam.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jPanel_zoznamTyzden_OK.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamTyzden_OK.setBackground(new java.awt.Color(102, 153, 255));
         jPanel_zoznamTyzden_OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamTyzden_OKMouseClicked(evt);
@@ -462,7 +462,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel_zoznamTyzden_zmaz.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamTyzden_zmaz.setBackground(new java.awt.Color(244, 67, 54));
         jPanel_zoznamTyzden_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamTyzden_zmazMouseClicked(evt);
@@ -552,7 +552,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         jPanel_zoznamReceptov_menu.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel_zoznamReceptov_OK.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov_OK.setBackground(new java.awt.Color(101, 248, 142));
         jPanel_zoznamReceptov_OK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_OKMouseClicked(evt);
@@ -576,7 +576,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel_zoznamReceptov_novyRecept.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov_novyRecept.setBackground(new java.awt.Color(102, 153, 255));
         jPanel_zoznamReceptov_novyRecept.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_novyReceptMouseClicked(evt);
@@ -600,7 +600,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel_zoznamReceptov_uprav.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov_uprav.setBackground(new java.awt.Color(255, 229, 41));
         jPanel_zoznamReceptov_uprav.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_upravMouseClicked(evt);
@@ -624,7 +624,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel_zoznamReceptov_zmaz.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_zoznamReceptov_zmaz.setBackground(new java.awt.Color(244, 67, 54));
         jPanel_zoznamReceptov_zmaz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel_zoznamReceptov_zmazMouseClicked(evt);

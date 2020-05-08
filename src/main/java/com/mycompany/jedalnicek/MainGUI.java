@@ -543,6 +543,11 @@ public class MainGUI extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList_zoznamReceptov.setSelectionBackground(new java.awt.Color(102, 153, 255));
+        jList_zoznamReceptov.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_zoznamReceptovMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(jList_zoznamReceptov);
 
         jPanel_zoznamReceptov_menu.setBackground(new java.awt.Color(255, 255, 255));
@@ -1175,8 +1180,19 @@ public class MainGUI extends javax.swing.JFrame {
             Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        zobrazTlacidla_zoznamReceptov(false);    
     }//GEN-LAST:event_jPanel_menu_receptyMouseClicked
-
+    
+    private void zobrazTlacidla_zoznamReceptov(Boolean b){
+        Boolean okTlacidlo = b;
+        if( (getNazovReceptu() != null) || (den < 1) ){
+            okTlacidlo=false;
+        }
+        jPanel_zoznamReceptov_OK.setVisible(okTlacidlo);
+        jPanel_zoznamReceptov_uprav.setVisible(b);
+        jPanel_zoznamReceptov_zmaz.setVisible(b);
+    }
+    
     private void jPanel_zoznamReceptov_novyReceptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamReceptov_novyReceptMouseClicked
         resetniPridajSurovinuTextFieldy();
         zobrazPridajReceptObrazovku();
@@ -1235,6 +1251,7 @@ public class MainGUI extends javax.swing.JFrame {
         if( (den>0) && (hodina>=0) ){
             if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)==null){
                 zobrazZoznamReceptovObrazovku();
+                zobrazTlacidla_zoznamReceptov(false);
                 try {
                    aktualizujTabulky_recepty();
                 } catch (SQLException ex) {
@@ -1450,6 +1467,12 @@ public class MainGUI extends javax.swing.JFrame {
         x_panelTitle = evt.getX();
         y_panelTitle = evt.getY();
     }//GEN-LAST:event_jPanel_titleMousePressed
+
+    private void jList_zoznamReceptovMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_zoznamReceptovMouseClicked
+        if(jList_zoznamReceptov.getSelectedValue()!=null){
+            zobrazTlacidla_zoznamReceptov(true);
+        }
+    }//GEN-LAST:event_jList_zoznamReceptovMouseClicked
 
     /**
      * @param args the command line arguments

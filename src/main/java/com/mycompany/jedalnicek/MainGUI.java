@@ -1247,7 +1247,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void jPanel_zoznamTyzden_zmazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_zoznamTyzden_zmazMouseClicked
         nastavHodinaDen();
         if( (den>0) && (hodina>=0) ){
-            if(jTable_Main_tyzdenZoznam.getValueAt(hodina, den)!=null){
+            if(getNazovReceptu()!=null){
                 jTable_Main_tyzdenZoznam.setValueAt(null, hodina, den);
                 try {
                     databaza.vymazReceptZDenHasRecept(hodina,den);
@@ -1260,10 +1260,8 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_zoznamTyzden_zmazMouseClicked
 
     private void jTable_Main_tyzdenZoznamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Main_tyzdenZoznamMouseClicked
-       nastavHodinaDen();
-       if(den>0){
-           jLabel_main_zvolenyRecept.setText((String) jTable_Main_tyzdenZoznam.getValueAt(hodina, den));
-       }
+        nastavHodinaDen();
+        zobrazMainObrazovku();
     }//GEN-LAST:event_jTable_Main_tyzdenZoznamMouseClicked
 
     private void jPanel_pridajRecept_zmazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_pridajRecept_zmazMouseClicked
@@ -1604,6 +1602,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void aktualizujTabulky_main() throws SQLException{
         zobrazRecepty_zoznamTyzden();
         zobrazMakronutrie_zoznamTyzden();
+        zobrazMainObrazovku();
     }
 
     private void aktualizujTabulky_suroviny() throws SQLException {
@@ -1630,6 +1629,24 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_zoznamReceptov.setVisible(false);
         jPanel_pridajRecept.setVisible(false);
         jPanel_zoznamTyzden.setVisible(true);
+        jPanel_zoznamTyzden_zmaz.setVisible(false);
+        
+        
+            String nazovReceptu = getNazovReceptu();
+            jLabel_main_zvolenyRecept.setText(nazovReceptu);
+            jPanel_zoznamTyzden_zmaz.setVisible(false);
+            
+            if(nazovReceptu!=null){
+                jPanel_zoznamTyzden_zmaz.setVisible(true);
+            }
+        
+    }
+    private String getNazovReceptu(){
+        String nazovReceptu = null;
+        if(den>0){
+            nazovReceptu = (String) jTable_Main_tyzdenZoznam.getValueAt(hodina, den);
+        }
+        return nazovReceptu;
     }
 
     private void zobrazZoznamReceptovObrazovku() {

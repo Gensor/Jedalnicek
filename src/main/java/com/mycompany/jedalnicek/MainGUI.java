@@ -16,8 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class MainGUI extends javax.swing.JFrame {
     private DBconnect databaza ;
     private Recept recept;
-    int hodina ;                          
-    int den ;
+    private int hodina ;                          
+    private int den ;
+    private int x_panelTitle;
+    private int y_panelTitle;
     /**
      * Creates new form MainGUI
      */
@@ -26,6 +28,11 @@ public class MainGUI extends javax.swing.JFrame {
         databaza = new DBconnect();
         aktualizujTabulky_main();
         zobrazMainObrazovku();
+        initObrazky();
+        
+    }
+    
+    private void initObrazky(){
         //main
         nastavObrazok("images/home.png",jLabel_home);
         nastavObrazok("images/recipe.png", jLabel_recepty_icon);
@@ -42,11 +49,8 @@ public class MainGUI extends javax.swing.JFrame {
         nastavObrazok("images/remove.png", jLabel_pridajRecept_zmaz_icon);
         nastavObrazok("images/edit.png", jLabel_pridajRecept_uprav_icon);
         nastavObrazok("images/ok.png", jLabel_pridajRecept_ok_icon);
-        
-        
-        
-       
     }
+    
     private void nastavObrazok(String path,JLabel label){
         ImageIcon icon = new ImageIcon(this.getClass().getClassLoader().getResource(path));
         Image img = icon.getImage();
@@ -145,6 +149,11 @@ public class MainGUI extends javax.swing.JFrame {
         jPanel_title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel_titleMouseDragged(evt);
+            }
+        });
+        jPanel_title.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel_titleMousePressed(evt);
             }
         });
 
@@ -507,7 +516,7 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(jPanel_zoznamTyzden_OK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel_zoznamTyzden_zmaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_zoznamTyzdenLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,7 +524,7 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jLabel_main_zvolenyRecept, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel_zoznamReceptov.setBackground(new java.awt.Color(255, 255, 255));
@@ -1119,6 +1128,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel_menu_homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_menu_homeMouseClicked
@@ -1433,9 +1443,15 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void jPanel_titleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_titleMouseDragged
-       Point p = evt.getLocationOnScreen();
-       this.setLocation(p);
+       int x = evt.getXOnScreen();
+       int y = evt.getYOnScreen();
+       this.setLocation(x-x_panelTitle, y-y_panelTitle);
     }//GEN-LAST:event_jPanel_titleMouseDragged
+
+    private void jPanel_titleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel_titleMousePressed
+        x_panelTitle = evt.getX();
+        y_panelTitle = evt.getY();
+    }//GEN-LAST:event_jPanel_titleMousePressed
 
     /**
      * @param args the command line arguments
